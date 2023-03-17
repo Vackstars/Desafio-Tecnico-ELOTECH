@@ -28,6 +28,7 @@ public class PessoaControle {
     @Autowired
     private PessoaServico ps;
 
+    // o formato da data para cadastrar a dataNascimento é (dd/mm/aaaa)
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@Valid @RequestBody Pessoa obj) {
         return ps.cadastrarAlterar(obj, "cadastrar");
@@ -39,17 +40,17 @@ public class PessoaControle {
     }
 
     @GetMapping("/listar")
-    private Iterable<Pessoa> listar() {
+    public Iterable<Pessoa> listar() {
         return ps.listar();
     }
 
-    @GetMapping("/listar/{nome}")
-    private List<Pessoa> listarPorNome(@PathVariable String nome) {
+    @GetMapping("/listarNome/{nome}")
+    public List<Pessoa> listarPorNome(@PathVariable String nome) {
         return pr.findByNome(nome);
 
     }
 
-    @GetMapping("/listar/{id}")
+    @GetMapping("/listarId/{id}")
     public ResponseEntity<?> selecionarId(@PathVariable Long id) {
         return ps.selecionarPeloId(id);
     }

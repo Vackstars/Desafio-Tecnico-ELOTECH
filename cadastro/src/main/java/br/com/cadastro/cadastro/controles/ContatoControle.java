@@ -27,6 +27,7 @@ public class ContatoControle {
     @Autowired
     private ContatoServico cs;
 
+    
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@Valid @RequestBody Contato obj) {
         return cs.cadastrarAlterar(obj, "cadastrar");
@@ -38,12 +39,12 @@ public class ContatoControle {
     }
 
     @GetMapping("/listar")
-    private Iterable<Contato> listar() {
+    public Iterable<Contato> listar() {
         return cs.listar();
     }
 
     @GetMapping("/listar/{nome}")
-    private List<Contato> listarPorNome(@PathVariable String nome) {
+    public List<Contato> listarPorNome(@PathVariable String nome) {
         return cr.findByNome(nome);
 
     }

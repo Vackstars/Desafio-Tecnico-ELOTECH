@@ -30,16 +30,26 @@ public class PessoaServico {
     // metodo para cadastrar ou alterar pessoas
     public ResponseEntity<?> cadastrarAlterar(Pessoa obj, String acao) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(obj.getDataNascimento(), formatter); // converte a string em um objeto LocalDate
+        LocalDate data = LocalDate.parse(obj.getDataNascimento(), formatter); // converte a string em um objeto
+                                                                              // LocalDate
         LocalDate dataAtual = LocalDate.now(); // obtém a data atual
         if (data.isAfter(dataAtual)) {
             m.setMensagem("a data de nascimento nao pode ser uma data futura!");
             return new ResponseEntity<>(m, HttpStatus.BAD_REQUEST);
+        }
+        if (obj.getNome() == null || obj.getNome().isEmpty() ||
+                obj.getCpf() == null || obj.getCpf().isEmpty() ||
+                obj.getDataNascimento() == null || obj.getDataNascimento().isEmpty() ||
+                obj.getContatos() == null || obj.getContatos().isEmpty()) {
+            return ResponseEntity.badRequest().body("Todos os campos de Pessoa são obrigatórios");
         } else {
             if (acao.equals("cadastrar")) {
-                return new ResponseEntity<Pessoa>(pr.save(obj), HttpStatus.CREATED);
+                return new ResponseEntity<>(pr.save(obj), HttpStatus.CREATED);
+            } else if (acao.equals("alterar")) {
+                return new ResponseEntity<>(pr.save(obj), HttpStatus.OK);
             } else {
-                return new ResponseEntity<Pessoa>(pr.save(obj), HttpStatus.OK);
+                m.setMensagem("acao invalida");
+                return new ResponseEntity<>(m, HttpStatus.BAD_REQUEST);
             }
         }
     }
@@ -55,11 +65,11 @@ public class PessoaServico {
     }
 
     // metodo para remover pessoas
-    public ResponseEntity<Mensagem> deletar (Long id){
+    public ResponseEntity<Mensagem> deletar(Long id) {
         pr.deleteById(id);
 
         m.setMensagem("pessoa deletada!");
-        return new ResponseEntity <>(m, HttpStatus.OK);
+        return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
 }

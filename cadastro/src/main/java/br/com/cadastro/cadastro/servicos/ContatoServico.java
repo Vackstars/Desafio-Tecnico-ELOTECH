@@ -25,10 +25,19 @@ public class ContatoServico {
 
     // metodo para cadastrar ou alterar contatos
     public ResponseEntity<?> cadastrarAlterar(Contato obj, String acao) {
-        if (acao.equals("cadastrar")) {
-            return new ResponseEntity<Contato>(cr.save(obj), HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<Contato>(cr.save(obj), HttpStatus.OK);
+        if (obj.getNome() == null || obj.getNome().isEmpty() ||
+                obj.getEmail() == null || obj.getEmail().isEmpty() ||
+                obj.getTelefone() == null || obj.getTelefone().isEmpty() ) {
+            return ResponseEntity.badRequest().body("Todos os campos de Contato são obrigatórios");
+        }else {
+            if (acao.equals("cadastrar")) {
+                return new ResponseEntity<>(cr.save(obj), HttpStatus.CREATED);
+            } else if (acao.equals("alterar")) {
+                return new ResponseEntity<>(cr.save(obj), HttpStatus.OK);
+            } else {
+                m.setMensagem("acao invalida");
+                return new ResponseEntity<>(m, HttpStatus.BAD_REQUEST);
+            }
         }
     }
 
