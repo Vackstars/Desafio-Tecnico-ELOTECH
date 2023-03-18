@@ -1,4 +1,4 @@
-function FormularioContato({ botao, eventoTeclado, cadastrar, obj, fechar }) {
+function FormularioContato({ botao, eventoTeclado, cadastrar, obj, fechar, cancelar, remover, alterar }) {
     return (
         <form>
             <input type='text' value={obj.nome} onChange={eventoTeclado} name= 'nome' placeholder='Nome' />
@@ -13,9 +13,9 @@ function FormularioContato({ botao, eventoTeclado, cadastrar, obj, fechar }) {
                     </ div>
                     :
                     <div>
-                        <input type='button' value='Alterar' className="btn btn-warning" />
-                        <input type='button' value='Deletar' className="btn btn-danger" />
-                        <input type='button' value='Cancelar' className="btn btn-secondary" />
+                        <input type='button' value='Alterar' onClick={alterar} className="btn btn-warning" />
+                        <input type='button' value='Deletar' onClick={remover} className="btn btn-danger" />
+                        <input type='button' value='Cancelar' onClick={cancelar} className="btn btn-secondary" />
                     </div>
             }
 
