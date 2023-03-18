@@ -21,7 +21,7 @@ function TelaPrincipal() {
     const [btnFiltrarContatoN, setBtnFiltrarContatoN] = useState(false);
     const [btnFiltrarPessoaI, setBtnFiltrarPessoaI] = useState(false);
     const [btnFiltrarContatoI, setBtnFiltrarContatoI] = useState(false);
-    const [btnDesfiltrar,setbtnDesfiltrar ] = useState(true);
+    const [btnDesfiltrar, setbtnDesfiltrar] = useState(true);
 
     //UseEffect
     useEffect(() => {
@@ -74,6 +74,7 @@ function TelaPrincipal() {
                     setPessoas([...Pessoas, retorno_convertido]);
                     alert('Pessoa cadastrada com sucesso!!');
                     limparFormularioP();
+                    limparFormularioC();
                 }
             })
     }
@@ -98,10 +99,11 @@ function TelaPrincipal() {
                 setContatos([...Contatos, retorno_convertido]);
                 alert('Contato cadastrado com sucesso!!');
                 limparFormularioC();
+                
 
             })
     }
-      
+
 
     //alterar pessoa
     const alterarPessoa = () => {
@@ -202,105 +204,105 @@ function TelaPrincipal() {
 
             })
     }
-    
+
     //filtrar pessoa pelo Id
     const filtrarIdPessoa = (id) => {
         if (btnFiltrarPessoaI === true) {
-          fetch('http://localhost:8080/pessoas/listarId/' + id, {
-            method: 'get',
-            headers: {
-              'Content-type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(retorno => retorno.json())
-            .then(retorno_convertido => setPessoas([retorno_convertido]));
+            fetch('http://localhost:8080/pessoas/listarId/' + id, {
+                method: 'get',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(retorno => retorno.json())
+                .then(retorno_convertido => setPessoas([retorno_convertido]));
         }
-        
-      }
 
-      //filtrar contato pelo Id
+    }
+
+    //filtrar contato pelo Id
     const filtrarIdContato = (id) => {
         if (btnFiltrarContatoI === true) {
-          fetch('http://localhost:8080/contatos/listarId/' + id, {
-            method: 'get',
-            headers: {
-              'Content-type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(retorno => retorno.json())
-            .then(retorno_convertido => setContatos([retorno_convertido]));
+            fetch('http://localhost:8080/contatos/listarId/' + id, {
+                method: 'get',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(retorno => retorno.json())
+                .then(retorno_convertido => setContatos([retorno_convertido]));
         }
-        
-      }
+
+    }
 
     //filtrar pessoa pelo nome
     const filtrarNomePessoa = (nome) => {
         if (btnFiltrarPessoaN === true) {
-          fetch('http://localhost:8080/pessoas/listarNome/' + nome, {
-            method: 'get',
-            headers: {
-              'Content-type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(retorno => retorno.json())
-            .then(retorno_convertido => setPessoas(retorno_convertido));
+            fetch('http://localhost:8080/pessoas/listarNome/' + nome, {
+                method: 'get',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(retorno => retorno.json())
+                .then(retorno_convertido => setPessoas(retorno_convertido));
         }
-        
-      }
 
-      //filtrar contato pelo nome
+    }
+
+    //filtrar contato pelo nome
     const filtrarNomeContato = (nome) => {
         if (btnFiltrarContatoN === true) {
-          fetch('http://localhost:8080/contatos/listarNome/' + nome, {
-            method: 'get',
-            headers: {
-              'Content-type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(retorno => retorno.json())
-            .then(retorno_convertido => setContatos(retorno_convertido));
+            fetch('http://localhost:8080/contatos/listarNome/' + nome, {
+                method: 'get',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(retorno => retorno.json())
+                .then(retorno_convertido => setContatos(retorno_convertido));
         }
-        
-      }
 
-      //desfiltrar pessoa
+    }
+
+    //desfiltrar pessoa
     const desfiltrarPessoas = () => {
         setbtnDesfiltrar(true);
         if (btnDesfiltrar === true) {
-          fetch('http://localhost:8080/pessoas/listar', {
-            method: 'get',
-            headers: {
-              'Content-type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(retorno => retorno.json())
-            .then(retorno_convertido => setPessoas(retorno_convertido));
+            fetch('http://localhost:8080/pessoas/listar', {
+                method: 'get',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(retorno => retorno.json())
+                .then(retorno_convertido => setPessoas(retorno_convertido));
         }
-        
-      }
+
+    }
 
 
-      //desfiltrar contato
+    //desfiltrar contato
     const desfiltrarContato = () => {
         setbtnDesfiltrar(true);
         if (btnDesfiltrar === true) {
-          fetch('http://localhost:8080/contatos/listar', {
-            method: 'get',
-            headers: {
-              'Content-type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(retorno => retorno.json())
-            .then(retorno_convertido => setContatos(retorno_convertido));
+            fetch('http://localhost:8080/contatos/listar', {
+                method: 'get',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+                .then(retorno => retorno.json())
+                .then(retorno_convertido => setContatos(retorno_convertido));
         }
-        
-      }
+
+    }
 
     //remover Pessoa
     const removerPessoa = () => {
@@ -422,13 +424,13 @@ function TelaPrincipal() {
         setMostrarContatos(true);
         setObjPessoa(Pessoas[indice]);
     }
-    
+
 
 
     return (
         <div>
             <h1>Cadastro Pessoas</h1>
-            <label>
+            <label class="lead">
                 Seja bem vindo! Escolha o que deseja fazer, manipular as Pessoas ou Contatos, mas lembre-se é necessario ao menos 1 contato para cadastrar uma pessoa:
             </label>
             <p></p>
@@ -457,24 +459,24 @@ function TelaPrincipal() {
                     fechar={fecharFormularioPessoa}
                     remover={removerPessoa}
                     alterar={alterarPessoa}
-                    
+
                 />
             )}
 
             {mostrarContatos && (
-                <MostrarContatos vetor={Pessoas}/>
+                <MostrarContatos vetor={Pessoas} />
             )}
 
             {mostrarTabelaPessoa && (
-                <TabelaPessoa vetor={Pessoas} 
-                selecionar={selecionarPessoa} 
-                obj={objPessoa}
-                eventoTeclado={aoDigitarPessoa}
-                filtrarN={filtrarNomePessoa}
-                desfiltrar={desfiltrarPessoas}
-                filtrarId={filtrarIdPessoa}
-                contatos={listaContatos}
-            
+                <TabelaPessoa vetor={Pessoas}
+                    selecionar={selecionarPessoa}
+                    obj={objPessoa}
+                    eventoTeclado={aoDigitarPessoa}
+                    filtrarN={filtrarNomePessoa}
+                    desfiltrar={desfiltrarPessoas}
+                    filtrarId={filtrarIdPessoa}
+                    contatos={listaContatos}
+
                 />
             )}
 
@@ -493,12 +495,12 @@ function TelaPrincipal() {
 
             {mostrarTabelaContato && (
                 <TabelaContato vetor={Contatos}
-                 selecionar={selecionarContato}
-                 obj={objContato}
-                eventoTeclado={aoDigitarContato}
-                filtrarN={filtrarNomeContato}
-                filtrarId={filtrarIdContato}
-                desfiltrar={desfiltrarContato} />
+                    selecionar={selecionarContato}
+                    obj={objContato}
+                    eventoTeclado={aoDigitarContato}
+                    filtrarN={filtrarNomeContato}
+                    filtrarId={filtrarIdContato}
+                    desfiltrar={desfiltrarContato} />
             )}
         </div>
     );

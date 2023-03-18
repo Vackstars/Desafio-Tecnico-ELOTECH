@@ -37,6 +37,7 @@ public class PessoaServico {
             m.setMensagem("a data de nascimento nao pode ser uma data futura!");
             return new ResponseEntity<>(m, HttpStatus.BAD_REQUEST);
         }
+        //faz a verificação dos campos
         if (obj.getNome() == null || obj.getNome().isEmpty() ||
                 obj.getCpf() == null || obj.getCpf().isEmpty() ||
                 obj.getDataNascimento() == null || obj.getDataNascimento().isEmpty() ||
