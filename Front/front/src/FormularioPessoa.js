@@ -1,8 +1,7 @@
-
-
-function FormularioPessoa({ botao, eventoTeclado,eventoTeclado2, cadastrar, obj,obj2, fechar, cancelar, remover, alterar }) {
+function FormularioPessoa({ botao, eventoTeclado,eventoTeclado2, cadastrar, obj,obj2, fechar, cancelar, remover, alterar, filtrarNome }) {
     return (
         <form>
+
             <input type='text' value={obj.nome} onChange={eventoTeclado} name='nome' placeholder='Nome' />
             <input type='text' value={obj.cpf} onChange={eventoTeclado} name='cpf' placeholder='CPF' />
             <input type='text' value={obj.dataNascimento} onChange={eventoTeclado} name='dataNascimento' placeholder='Data de Nascimento' />

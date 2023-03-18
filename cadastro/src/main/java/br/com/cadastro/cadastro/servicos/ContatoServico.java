@@ -43,7 +43,7 @@ public class ContatoServico {
 
     
 
-    // metodo para selecionar pessoas pelo codigo
+    // metodo para selecionar contatos pelo codigo
     public ResponseEntity<?> selecionarPeloId(Long id) {
         if (cr.countById(id) == 0) {
             m.setMensagem("codigo inexistente!");
@@ -53,7 +53,7 @@ public class ContatoServico {
 
     }
 
-    // metodo para remover pessoas
+    // metodo para remover contatos
     public ResponseEntity<Mensagem> deletar(Long id) {
         cr.deleteById(id);
 

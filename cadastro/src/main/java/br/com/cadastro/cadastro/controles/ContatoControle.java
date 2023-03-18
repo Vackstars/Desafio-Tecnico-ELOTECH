@@ -45,13 +45,13 @@ public class ContatoControle {
         return cs.listar();
     }
 
-    @GetMapping("/listar/{nome}")
+    @GetMapping("/listarNome/{nome}")
     public List<Contato> listarPorNome(@PathVariable String nome) {
         return cr.findByNome(nome);
 
     }
 
-    @GetMapping("/listar/{id}")
+    @GetMapping("/listarId/{id}")
     public ResponseEntity<?> selecionarId(@PathVariable Long id) {
         return cs.selecionarPeloId(id);
     }
