@@ -1,4 +1,4 @@
-function Tabela({ vetor, selecionar }) {
+function TabelaPessoa({ vetor, selecionar }) {
     return (
         <table className="table">
             <thead>
@@ -33,4 +33,4 @@ function Tabela({ vetor, selecionar }) {
     )
 }
 
-export default Tabela;
+export default TabelaPessoa;
