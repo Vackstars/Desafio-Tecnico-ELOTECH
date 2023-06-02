@@ -37,15 +37,14 @@ public class PessoaServico {
             m.setMensagem("a data de nascimento nao pode ser uma data futura!");
             return new ResponseEntity<>(m, HttpStatus.BAD_REQUEST);
         }
-        //faz a verificação dos campos
         if (obj.getNome() == null || obj.getNome().isEmpty() ||
                 obj.getCpf() == null || obj.getCpf().isEmpty() ||
-                obj.getDataNascimento() == null || obj.getDataNascimento().isEmpty() ||
+                obj.getDataNascimento() == null || obj.getDataNascimento().isEmpty() ||       //faz a verificação dos campos
                 obj.getContatos() == null || obj.getContatos().isEmpty()) {
             return ResponseEntity.badRequest().body("Todos os campos de Pessoa são obrigatórios");
         } else {
             if (acao.equals("cadastrar")) {
-                return new ResponseEntity<>(pr.save(obj), HttpStatus.CREATED);
+                return new ResponseEntity<>(pr.save(obj), HttpStatus.CREATED);     //verifica se esta sendo selecionado cadastrar ou alterar
             } else if (acao.equals("alterar")) {
                 return new ResponseEntity<>(pr.save(obj), HttpStatus.OK);
             } else {
